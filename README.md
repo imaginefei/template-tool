@@ -26,7 +26,7 @@ Options:
   -e, --environment     加入系统环境变量到模板
 ```
 
-例如有var.yml和config.txt.j2两个文件：
+例如有var.yml和config.txt.j2两个文件：  
 var.yml
 ``` yaml
 ---

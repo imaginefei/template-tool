@@ -2,9 +2,11 @@
 根据jinja2模板和yaml配置文件，生成文件
 
 ## 安装
+```
 git clone https://github.com/imaginefei/template-tool.git
 cd template-tool
 python setup.py install
+```
 
 ## 用法
 ```

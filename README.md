@@ -3,9 +3,9 @@
 
 ## 安装
 ``` shell
-git clone https://github.com/imaginefei/template-tool.git
-cd template-tool
-python setup.py install
+$ git clone https://github.com/imaginefei/template-tool.git
+$ cd template-tool
+$ python setup.py install
 ```
 
 ## 用法
@@ -40,6 +40,10 @@ Hello {{ my_name }}
 
 命令：  
 ``` shell
-cd /Users/imaginefei/Desktop
-jelly -y var.yml -d /Users/imaginefei/Desktop -t config.txt.j2 -o config.txt
+$ cd /Users/imaginefei/Desktop
+$ jelly -y var.yml -d /Users/imaginefei/Desktop -t config.txt.j2 -o config.txt
+config.txt文件生成完毕.
+
+$ cat config.txt
+Hello imaginefei
 ```

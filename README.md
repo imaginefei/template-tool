@@ -7,6 +7,7 @@ cd template-tool
 python setup.py install
 
 ## 用法
+```
 $ jelly --help
 Usage: jelly [options] args
 
@@ -21,3 +22,4 @@ Options:
   -o OBJECTIVE, --objective=OBJECTIVE
                         [必须]目标文件
   -e, --environment     加入系统环境变量到模板
+```

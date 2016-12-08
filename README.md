@@ -26,7 +26,7 @@ Options:
   -e, --environment     加入系统环境变量到模板
 ```
 
-例如有var.yml和config.txt.j2两个文件：  
+例如在/Users/imaginefei/Desktop 目录有var.yml和config.txt.j2两个文件：  
 var.yml
 ``` yaml
 ---
@@ -36,4 +36,10 @@ my_name: "imaginefei"
 config.txt.j2
 ``` jinja2
 Hello {{ my_name }}
+```
+
+命令：  
+``` shell
+cd /Users/imaginefei/Desktop
+jelly -y var.yml -d /Users/imaginefei/Desktop -t config.txt.j2 -o config.txt
 ```

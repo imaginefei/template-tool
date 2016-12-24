@@ -2,6 +2,7 @@
 # Date:'16/9/28 14:26'
 __author__ = 'imaginefei'
 
+import os
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -10,7 +11,7 @@ from .yaml_tool import YamlTool
 from .template_tool import TemplateTool
 
 
-def render(yaml_file, template_dir, template_file, objective, environment):
+def render(yaml_file, template_file, objective, environment):
     # 解析yaml文件
     yaml_dict = YamlTool.load_file(yaml_file)
 
@@ -20,8 +21,13 @@ def render(yaml_file, template_dir, template_file, objective, environment):
 
     # 是否加入环境变量字典
     if environment:
-        import os
         yaml_dict.update(os.environ.data)
+
+    # 根据模板文件，找到模板文件夹
+    template_dir = os.path.dirname(os.path.abspath(template_file))
+
+    # 获取template_file的basename
+    template_file = os.path.basename(template_file)
 
     # 根据模板生成文件
     tool = TemplateTool(template_dir)
@@ -40,9 +46,6 @@ def main():
     parser.add_option("-y", "--yaml", dest="yaml_file",
                       metavar="YAML_FILE", help="[必须]YAML文件（内容不能纯列表）")
 
-    parser.add_option("-d", "--template_dir", dest="template_dir",
-                      metavar="TEMPLATE_DIR", help="[必须]模板目录")
-
     parser.add_option("-t", "--template", dest="template_file",
                       metavar="TEMPLATE_FILE", help="[必须]模板目录中的Jinja2模板文件名")
 
@@ -58,13 +61,12 @@ def main():
     # 检查必须的参数
     if options.yaml_file is None:
         parser.error("缺少yaml_file（-y）")
-    elif options.template_dir is None:
-        parser.error("缺少template_dir（-d）")
     elif options.template_file is None:
         parser.error("缺少template_file（-t）")
     elif options.objective is None:
         parser.error("缺少objective（-o）")
 
-    render(options.yaml_file, options.template_dir,
-           options.template_file, options.objective,
+    render(options.yaml_file,
+           options.template_file,
+           options.objective,
            options.environment)
